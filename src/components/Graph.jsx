@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import "./Graph.css";
+//Se importan componentes y funcionalidades relacionadas con la biblioteca "chart.js" para crear y personalizar los gráficos.
 import { Line } from "react-chartjs-2";
 
 import {
@@ -26,7 +27,7 @@ ChartJS.register(
   Filler,
   Legend
 );
-
+//Graph: recibe varias propiedades como argumentos: type, coin, currency, days y color.
 export default function Graph({
   type = 1,
   coin = "bitcoin",
@@ -34,6 +35,8 @@ export default function Graph({
   days = 30,
   color = "#04D99D",
 }) {
+  /*Se define un objeto chartStyle para configurar el estilo del gráfico, 
+  incluyendo el borde, la cuadrícula y las etiquetas de los ejes.*/
   const chartStyle = {
     border: {
       display: false,
@@ -46,15 +49,18 @@ export default function Graph({
       display: false,
     },
   };
-
+/* Se construye la URL para obtener los datos del mercado de la criptomoneda utilizando la API de Coingecko. */
   let url = `https://api.coingecko.com/api/v3/coins/${coin}/market_chart?vs_currency=${currency}&days=${days}&interval=daily`;
 
   let data, options;
-
+/*Se utiliza el estado para almacenar los datos de los precios (prices),
+ las fechas (dates) y el gradiente de fondo (gradient) para el gráfico. */
   const [prices, setPrices] = useState();
   const [dates, setDates] = useState();
   const [gradient, setGradient] = useState();
-
+/*Se define la función getData que realiza una solicitud a la API de Coingecko para obtener datos de mercado
+ de la criptomoneda seleccionada y 
+actualiza el estado con los datos obtenidos. */
   async function getData() {
     try {
       const response = await fetch(url);
@@ -65,9 +71,9 @@ export default function Graph({
       console.log("error", e);
     }
   }
-
+//Se crea una referencia (chartRef) que se utilizará para acceder al elemento DOM del gráfico.
   const chartRef = useRef(null);
-
+//useEffect para obtener los datos y configurar el gradiente de fondo cuando el componente se monta.
   useEffect((_) => {
     getData();
     const canvas = chartRef.current.firstChild;
@@ -79,7 +85,9 @@ export default function Graph({
     BGgradient.addColorStop(1, "rgba(4, 191, 157, 0)");
     setGradient(BGgradient);
   }, []);
-
+/*Se utiliza una estructura switch para definir las opciones y datos del gráfico en función del valor de type.
+Para type 0, se configura un gráfico de líneas con una leyenda y un relleno degradado.
+Para type 1, se configura un gráfico de líneas simple. */
   switch (type) {
     case 0:
       options = {

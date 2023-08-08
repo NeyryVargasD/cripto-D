@@ -1,12 +1,14 @@
 .coin_image_container img{
     height: 40px;
     margin: 10px 0;
+    
 }
 
 @media (min-width: 768px) { 
     .coin_image_container{
         width: 140px;
         margin: auto;
+
     }
     .coin_image_container img{
         height: 30px;

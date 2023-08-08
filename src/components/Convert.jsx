@@ -1,9 +1,16 @@
 import InputConvert from './InputConvert'
 import './Convert.css'
+//Se importa el icono FaExchangeAlt del paquete "react-icons/fa" para mostrar un ícono de intercambio.
 import { FaExchangeAlt } from "react-icons/fa";
+//Se importan las funciones useState y useEffect desde react para gestionar el estado y los efectos secundarios en el componente.
 import {useState, useEffect} from 'react'
 
-
+/* Convert: Se utiliza el estado para almacenar información como la lista de criptomonedas (coin), las criptomonedas seleccionadas (selCoin1 y selCoin2), 
+el valor ingresado por el usuario (mainTxt) y el resultado de la conversión (res). 
+GetData: realiza una solicitud a la API, para obtener información sobre las criptomonedas y luego actualiza el estado coin con los datos obtenidos.
+useEffect: Se itera a través de la lista de criptomonedas y realiza los cálculos necesarios.
+Se muestran los elementos <h2> y <div> que contienen los componentes InputConvert para las dos criptomonedas 
+y el ícono de intercambio (FaExchangeAlt)*/
 export default function Convert() {
     const [coin, setCoin] = useState([])
     const [selCoin1, setSelCoin1] = useState('btc')

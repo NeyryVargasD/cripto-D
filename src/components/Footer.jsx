@@ -17,10 +17,6 @@ export default function Footer() {
 
         <div className='footer-down'>
           <p>Developed by: Neyry VD</p>
-
-          <div>
-            
-          </div>
         </div>
       </div>
     </div>

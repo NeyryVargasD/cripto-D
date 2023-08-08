@@ -1,8 +1,7 @@
-import { useEffect, useState } from 'react' // Hooks
-// Importamos nuestra hoja de estilos
+import { useEffect, useState } from 'react' 
 import './App.css';
 
-// Importamos los componentes principales de la aplicación
+// componentes principales de la aplicacion
 import Header from './components/Header'
 import CardPrincipal from './components/CardPrincipal';
 import Card from './components/Card'
@@ -40,9 +39,6 @@ function App() {
     */
     const json = await response.json();
     
-    /*
-      La siguiente URL la generamos de la API para que nos permita acceder a diferentes divisas, esta URL la almacenamos en una variable.
-    */
     const response_cur = await fetch(
       `https://api.coingecko.com/api/v3/simple/supported_vs_currencies`
     );
